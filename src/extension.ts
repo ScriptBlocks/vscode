@@ -1,5 +1,6 @@
 // Import the necessary modules
 import * as vscode from 'vscode';
+import { getWebviewContent } from './sidebar';
 
 /**
  * This method is called when the extension is activated.
@@ -13,7 +14,7 @@ function activate(context: vscode.ExtensionContext) {
         const panel = vscode.window.createWebviewPanel(
             'pythonSidebar', // Identifier for the view
             'Python Sidebar', // Title of the panel
-            vscode.ViewColumn.Active, // Show the panel beside the code editor
+            vscode.ViewColumn.Beside, // Show the panel beside the code editor
             {
                 // Options for the Webview
                 enableScripts: true,
@@ -34,26 +35,6 @@ function activate(context: vscode.ExtensionContext) {
 
     // Register the event listener
     context.subscriptions.push(disposable);
-}
-
-/**
- * Provides the HTML content for the code editor side panel.
- * @returns {string} HTML content.
- */
-function getWebviewContent() {
-    return `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Hello World</title>
-        </head>
-        <body>
-            <h1>Hello World</h1>
-        </body>
-        </html>
-    `;
 }
 
 /**
